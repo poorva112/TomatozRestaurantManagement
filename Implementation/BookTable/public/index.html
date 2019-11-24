@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tomatoz Home</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+		<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+		<script src="firebaseinit.js"></script>
+
+
+		<style>
+		body {font-family: "Times New Roman", Georgia, Serif;}
+		h1, h2, h3, h4, h5, h6 {
+		  font-family: "Playfair Display";
+		  letter-spacing: 5px;		 
+		}
+
+		/* Media Queries: Tablet Landscape */
+		@media screen and (max-width: 1060px) {
+		    #primary { width:67%; }
+		    #secondary { width:30%; margin-left:3%;}
+		}
+
+		/* Media Queries: Tabled Portrait */
+		@media screen and (max-width: 768px) {
+		    #primary { width:100%; }
+		    #secondary { width:100%; margin:0; border:none; }
+		}
+		
+		</style>
+
+	</head>
+
+	<body>
+		<!-- Navbar (sit on top) -->
+		<div class="w3-top">
+		  <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+		    <a href="#home" class="w3-bar-item w3-button">TOMATOZ</a>
+		    <!-- Right-sided navbar links. Hide them on small screens -->
+		    <div class="w3-right w3-hide-small">
+		      <a href="#about" class="w3-bar-item w3-button">About</a>
+		      <a href="#menu" class="w3-bar-item w3-button">Menu</a>
+		      <a href="#contact" class="w3-bar-item w3-button">Book A Table</a>
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Header -->
+		<header class="w3-display-container w3-content w3-wide" style="max-width:1600px;min-width:500px" id="home">
+		  <img class="w3-image" src="Images/mainimg.jpg" alt="Hamburger Catering" width="1600" height="800">
+		  <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+		    <h1 class="w3-xxlarge w3-white">Welcome to Tomatoz!</h1>
+		  </div>
+		</header>
+
+		<!-- Page content -->
+		<div class="w3-content" style="max-width:1100px">
+
+		  <!-- About Section -->
+		  <div class="w3-row w3-padding-64" id="about">
+		    <div class="w3-col m6 w3-padding-large w3-hide-small">
+		     <img src="Images/hb.jpg" class="w3-round w3-image w3-opacity-min"  alt="Table Setting" width="530" height="500">
+		    </div>
+
+		    <div class="w3-col m6 w3-padding-large">
+		      <h1 class="w3-center">About TOMATOZ</h1><br>
+		      <h5 class="w3-center">Tradition since 1889</h5>
+		      <p class="w3-large">Tomatoz was founded out of the passion to provide world class food from near and far. We only use <span class="w3-tag w3-light-grey">seasonal</span> ingredients.</p>
+		      <p class="w3-large w3-text-grey w3-hide-medium">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		    </div>
+		</div>
+
+
+		<!-- Menu Section -->
+		<div class="w3-row w3-padding-64" id="menu">
+		    <div class="w3-col l6 w3-padding-large">
+		      <h1 class="w3-center">Our Menu</h1><br>
+		      <h4>Margherita Pizza</h4>
+		      <p class="w3-text-grey">Fresh tomatoes, fresh mozzarella, fresh basil</p><br>
+
+		      <h4>Alfredo Pizza</h4>
+		      <p class="w3-text-grey">Sliced grilled chicken and our signature alfredo sauce over fettuccine pasta</p><br>
+
+		      <h4>Dal Makhani</h4>
+		      <p class="w3-text-grey">Creamed lentils, fresh ginger, garlic and a rich blend of herbs and spices</p><br>
+
+		      <h4>Apple Pie</h4>
+		      <p class="w3-text-grey">Hand-made, freshly baked sweet chocolate cake</p><br>
+
+		      <h4>Pastry</h4>
+		      <p class="w3-text-grey">A flaky, buttery crust and a tender, lightly-spiced apple filling</p>
+		    </div>
+
+		    <div class="w3-col l6 w3-padding-large">
+		      <img src="Images/menu.jpg" class="w3-round w3-image w3-opacity-min" alt="Menu" style="width:100%">
+		    </div>
+		</div>
+
+	  <hr>
+
+	  <!-- Table Reservation Section -->
+	  <div class="w3-container w3-padding-64" id="contact">
+	    <h1>Book A Table</h1><br>
+	    <p>Allow us to provide you with top notch service by booking your table in advance.</p>
+	    <p>You can also contact us by phone 886578943 or email tomatoz@tomatoz.com, or you can enter your details here:</p>
+	    <form id="reserveForm">
+	      <p><input id="name" class="w3-input w3-padding-16" type="text" placeholder="Enter your name" required name="Name"></p></br>
+
+	      <p><input id="phone" class="w3-input w3-padding-16" type="text" placeholder="Enter your phone number" required></p></br>
+
+	      <p>Select table size:</p>
+	      <p><input id="size" type="radio" name ="size" value="4"checked required>4</p>
+	      <p><input id = "size" type="radio" name ="size" value="6">6</p></br>
+
+	      <p>Enter time of reservation: </p>
+	      <!-- type="time" not supported in Safari, use chrome or firefox-->
+	      <p><input id="time" type="time" required name="time"></p>
+	      <!--<small>Opens at 08:00 AM</small>--></br></br>
+
+	      <p><input id ="msg" class="w3-input w3-padding-16" type="text" placeholder="Message \ Special requirements" name="Message"></p>
+
+	      <p><button id="uploadbtn" class="w3-button w3-light-grey w3-section" type="submit">BOOK TABLE</button></p>
+
+	    </form>
+	  </div>
+
+	<!-- End page content -->
+	</div>
+
+	<!-- Footer -->
+	<footer class="w3-center w3-light-grey w3-padding-32" width="100%">
+	  <p></p>
+	</footer>
+
+
+
+
+	<script src="reserveDb.js"></script>
+
+
+
+	</body>
+
+</html>
