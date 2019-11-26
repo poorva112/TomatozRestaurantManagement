@@ -11,7 +11,13 @@ function enableBtn(){
         document.getElementById("tnum").innerHTML = "Table Number : "+tnum;
         var myStorage = window.localStorage;
         myStorage.setItem('tnum', tnum);
-    }       
+    } 
+    else{
+        var err = document.getElementById("error")
+        err.innerHTML = "Invalid Table Number";
+        err.style.color ="#C22200";
+
+    }      
 
 }
 

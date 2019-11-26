@@ -1,3 +1,43 @@
+
+
+
+//Get elements
+const btnLogout = document.getElementById('btnLogout');
+
+//Sign out 
+btnLogout.addEventListener('click', e => {
+    firebase.auth().signOut();
+    window.location.href = "index.html";    //redirect to login page
+});
+
+var email;
+//Realtime listener
+//Not really needed as admin is redirected to login page on signing out
+firebase.auth().onAuthStateChanged(firebaseUser => {
+    if(firebaseUser){
+        console.log(firebaseUser); 
+        // alert(firebaseUser.email); 
+        var txt = document.getElementById("hello");
+        var str = "Hello, ";
+
+        email = firebaseUser.email;
+        email = email.split("@")[0];
+        email = email.slice(6);
+        str = str + email + ". Please deliver food on the following tables";
+
+        txt.innerHTML = str;
+        
+    }else{
+        console.log('Not logged in');
+        window.location.href = "index.html";            //redirect to login page
+    }
+});
+
+
+
+
+
+
 // Waiter's View
 
 var order = firebase.database().ref('Order');
@@ -22,7 +62,8 @@ order.on('value', function(snapshot) {
 			var col4 = document.createElement("td");
 			var col5 = document.createElement("td");		
 
-			var compBtn=document.createElement("INPUT");
+			var compBtn=document.createElement("input");
+			
 			compBtn.setAttribute("type","button");
 	        compBtn.setAttribute("class", "compBtn w3-red w3-opacity w3-hover-opacity-off");
 			compBtn.setAttribute("id","comp"+key);
@@ -50,10 +91,16 @@ order.on('value', function(snapshot) {
 });
 
 
+
+
 function changeStatus(id){
+
 	var num = id.slice(4);	
 
 	order.child(num).update({"Status":"Delivered"});
+	order.child(num).update({"Waiter": email});
+
+	// alert(email);
 
 	var btn = document.getElementById(id);
 	btn.parentNode.removeChild(btn);

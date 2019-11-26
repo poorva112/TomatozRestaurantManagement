@@ -116,6 +116,10 @@
                 console.log("waiter");
                 window.location.href = "waiterView.html";
             }
+            else if(username == "mg"){
+                console.log("manager");
+                window.location.href = "manager.html";
+            }
             
         }else{
             console.log('Not logged in');
@@ -129,6 +133,7 @@
                 }                         
                 setTimeout(InvalidCred, 2500)
             });
+
             // javascript is asynchronous. I've added delay of 2.5 secs before it displays the error message.
             // It was showing error message for a fraction of second before it was redirected to landing page
             
@@ -138,8 +143,6 @@
         }
     });
 </script>
-
-
 
 </body>
 </html>

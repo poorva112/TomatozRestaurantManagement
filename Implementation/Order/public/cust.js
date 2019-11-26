@@ -26,7 +26,7 @@ start = parseInt(start);
 var finalBill = 0;
 var totalp = 0;
 function placeOrder(){ 
-	alert("Click ok to confirm");
+	confirm("Click ok to confirm");
     var items=document.querySelectorAll('input[type="checkbox"]:checked');
     
     var counter = items.length;

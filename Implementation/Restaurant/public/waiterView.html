@@ -11,7 +11,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
     <script src="firebaseinit.js"></script> 
 
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+   
     
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
@@ -43,18 +43,17 @@
 		#btnLogout{
 			float: right;
 		}
-		.top{			
+		/*.top{			
 			font-weight: bold;
-		}
+		}*/
     </style>
 
 </head>
 <body>
 
 <!-- Navbar (sit on top) -->
-<div class="top w3-hide-small">
+<div class="top ">
     <div class="w3-bar w3-xxlarge w3-red w3-opacity " id="myNavbar">
-        <!-- <a href="#" class="w3-bar-item w3-button">HOME</a> -->
         <a href=""  id ="btnLogout" class="w3-bar-item w3-button">LOG OUT</a>
     </div>
 </div>
@@ -80,43 +79,6 @@
 
 
 <script src="getWaiterView.js"></script>
-
-<script type="text/javascript">
-
-
-	//Get elements
-    const btnLogout = document.getElementById('btnLogout');
-    
-    //Sign out 
-    btnLogout.addEventListener('click', e => {
-        firebase.auth().signOut();
-        window.location.href = "index.html";    //redirect to login page
-    });
-    
-    //Realtime listener
-    //Not really needed as admin is redirected to login page on signing out
-    firebase.auth().onAuthStateChanged(firebaseUser => {
-        if(firebaseUser){
-            console.log(firebaseUser); 
-            // alert(firebaseUser.email); 
-            var txt = document.getElementById("hello");
-            var str = "Hello, ";
-
-            var email = firebaseUser.email;
-            email = email.split("@")[0];
-            email = email.slice(6);
-            str = str + email + ". Please deliver food on the following tables";
-
-            txt.innerHTML = str;
-            
-        }else{
-            console.log('Not logged in');
-            window.location.href = "index.html";            //redirect to login page
-        }
-    });
-
-</script>
-
 
 </body>
 </html>

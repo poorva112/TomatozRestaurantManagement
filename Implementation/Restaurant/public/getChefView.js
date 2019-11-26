@@ -1,3 +1,39 @@
+//Get elements
+const btnLogout = document.getElementById('btnLogout');
+
+//Sign out 
+btnLogout.addEventListener('click', e => {
+    firebase.auth().signOut();
+    window.location.href = "index.html";    //redirect to login page
+});
+
+
+var email;
+//Realtime listener
+//Not really needed as admin is redirected to login page on signing out
+firebase.auth().onAuthStateChanged(firebaseUser => {
+    if(firebaseUser){
+        console.log(firebaseUser); 
+        // alert(firebaseUser.email); 
+        var txt = document.getElementById("hello");
+        var str = "Hello, Chef ";
+
+        email = firebaseUser.email;
+        email = email.split("@")[0];
+        email = email.slice(4);
+        str = str + email;
+
+        txt.innerHTML = str;
+        
+    }else{
+        console.log('Not logged in');
+        window.location.href = "index.html";            //redirect to login page
+    }
+});
+
+
+
+
 // Chef's View
 
 var order = firebase.database().ref('Order');
@@ -54,6 +90,7 @@ function changeStatus(id){
 	var num = id.slice(4);	
 
 	order.child(num).update({"Status":"Completed"});
+	order.child(num).update({"Chef": email});
 
 	var btn = document.getElementById(id);
 	btn.parentNode.removeChild(btn);

@@ -52,7 +52,7 @@
 <body>
 
 <!-- Navbar (sit on top) -->
-<div class="top w3-hide-small">
+<div class="top ">
     <div class="w3-bar w3-xxlarge w3-red w3-opacity " id="myNavbar">
         <!-- <a href="#" class="w3-bar-item w3-button">HOME</a> -->
         <a href=""  id ="btnLogout" class="w3-bar-item w3-button">LOG OUT</a>
@@ -80,41 +80,6 @@
 
 <script src="getChefView.js"></script>
 
-<script type="text/javascript">
-
-
-	//Get elements
-    const btnLogout = document.getElementById('btnLogout');
-    
-    //Sign out 
-    btnLogout.addEventListener('click', e => {
-        firebase.auth().signOut();
-        window.location.href = "index.html";    //redirect to login page
-    });
-    
-    //Realtime listener
-    //Not really needed as admin is redirected to login page on signing out
-    firebase.auth().onAuthStateChanged(firebaseUser => {
-        if(firebaseUser){
-            console.log(firebaseUser); 
-            // alert(firebaseUser.email); 
-            var txt = document.getElementById("hello");
-            var str = "Hello, Chef ";
-
-            var email = firebaseUser.email;
-            email = email.split("@")[0];
-            email = email.slice(4);
-            str = str + email;
-
-            txt.innerHTML = str;
-            
-        }else{
-            console.log('Not logged in');
-            window.location.href = "index.html";            //redirect to login page
-        }
-    });
-
-</script>
 
 
 </body>
