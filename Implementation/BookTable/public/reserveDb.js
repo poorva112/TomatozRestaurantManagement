@@ -49,7 +49,7 @@ function book(){
             });
 
         
-            if(booked == 0 && available==1){
+            if(booked == 0 ){
                 q = q + 1;
                 var ref = resQueue.child(q);
                 ref.set({
@@ -63,9 +63,9 @@ function book(){
                 countRef.update({"queueCount": q});
                 alert("Your booking is successful. Check SMS for reservation ID");
             }
-            else if(booked == 0 && available == 0){
-                alert("Sorry! Currently, no tables are available. Contact us at 886578943");
-            }
+            // else if(booked == 0 && available == 0){
+            //     alert("Sorry! Currently, no tables are available. Contact us at 886578943");
+            // }
             
         });
        
